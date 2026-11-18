@@ -1,0 +1,50 @@
+/* ============ PUBLISH OR PERISH — responsive.css ============ */
+
+/* --- Tablets --- */
+@media (max-width: 860px) {
+  .hud-stats { gap: .6rem; }
+  .stat-bar { width: 56px; }
+  #portrait-layer { width: 136px; height: 136px; }
+}
+
+/* --- Phones --- */
+@media (max-width: 600px) {
+  #hud { gap: .5rem; padding: .5rem .6rem; }
+  #chapter-label { font-size: .6rem; }
+  .hud-stats { gap: .45rem; }
+  .stat { gap: .25rem; }
+  .stat-label { font-size: .52rem; letter-spacing: .05em; }
+  .stat-bar { width: 42px; height: 8px; }
+  .stat-coffee { display: none; } /* keep HUD readable on tiny screens */
+
+  #portrait-layer { width: 104px; height: 104px; margin-bottom: -8px; }
+
+  #dialogue-box { min-height: 120px; padding: .8rem 1rem 1rem; }
+  #dialogue-text { font-size: .86rem; line-height: 1.55; }
+  #speaker-name { font-size: .66rem; }
+
+  .choice-btn { padding: .65rem .7rem; }
+  .choice-text { font-size: .8rem; }
+  .choice-desc { font-size: .64rem; }
+
+  .hall-stats { grid-template-columns: repeat(2, 1fr); }
+  .hall-endings { grid-template-columns: repeat(2, 1fr); }
+
+  #mg-actions { grid-template-columns: 1fr; }
+  #mg-message { font-size: .76rem; min-height: 4.6em; }
+  .tk-line { flex-wrap: wrap; gap: .4rem; }
+
+  .settings-panel, .hall-panel { padding: 1.3rem 1.1rem; }
+  .option-row .btn { width: 92px; }
+
+  #stage { padding-bottom: .8rem; }
+}
+
+/* --- Short landscape phones --- */
+@media (max-height: 520px) {
+  #portrait-layer { display: none; }
+  #dialogue-box { min-height: 96px; }
+  .game-title { font-size: 2.2rem; }
+  .title-menu { margin-top: 1.2rem; }
+  .title-footer { display: none; }
+}

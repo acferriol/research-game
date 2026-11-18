@@ -1,0 +1,6 @@
+# opencode tooling cache
+.atl/
+
+# OS noise
+Thumbs.db
+.Desktop.ini

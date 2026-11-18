@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Publish or Perish — The Peer Review Nightmare</title>
+<meta name="description" content="One paper. Three reviewers. Zero mercy. A comedy game about academic publishing.">
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ TITLE SCREEN ============ -->
+  <section class="screen" id="screen-title" aria-label="Main menu">
+    <div class="title-bg" aria-hidden="true">
+      <div class="stars"></div>
+      <div class="paper p1"></div><div class="paper p2"></div><div class="paper p3"></div>
+      <div class="paper p4"></div><div class="paper p5"></div><div class="paper p6"></div>
+      <div class="title-vignette"></div>
+    </div>
+    <div class="title-content">
+      <p class="title-pre">// PEER REVIEW SIMULATOR v1.0</p>
+      <h1 class="game-title">PUBLISH<br><span class="title-or">OR</span> PERISH</h1>
+      <p class="game-subtitle">THE PEER REVIEW NIGHTMARE</p>
+      <p class="game-tagline">One paper. Three reviewers. Zero mercy.</p>
+      <nav class="title-menu">
+        <button class="btn btn-primary" id="btn-new">NEW SUBMISSION</button>
+        <button class="btn" id="btn-continue" disabled>CONTINUE SUFFERING</button>
+        <button class="btn" id="btn-chapters">CHAPTER SELECT</button>
+        <button class="btn" id="btn-hall">HALL OF REJECTIONS</button>
+        <button class="btn" id="btn-settings">SETTINGS</button>
+      </nav>
+      <p class="title-footer">Manuscript #SOCK-0042 &middot; autosaves locally &middot; no reviewers were harmed</p>
+    </div>
+  </section>
+
+  <!-- ============ SETTINGS SCREEN ============ -->
+  <section class="screen" id="screen-settings" hidden aria-label="Settings">
+    <div class="panel-wrap">
+      <div class="pixel-panel settings-panel">
+        <h2 class="panel-title">SETTINGS</h2>
+        <div class="option-row" role="group" aria-label="Sound effects">
+          <span class="option-label">SOUND EFFECTS</span>
+          <button class="btn btn-toggle" id="opt-sound" aria-pressed="true">ON</button>
+        </div>
+        <div class="option-row" role="group" aria-label="Background music">
+          <span class="option-label">BACKGROUND MUSIC</span>
+          <button class="btn btn-toggle" id="opt-music" aria-pressed="true">ON</button>
+        </div>
+        <div class="option-row" role="group" aria-label="Animations">
+          <span class="option-label">ANIMATIONS</span>
+          <button class="btn btn-toggle" id="opt-motion" aria-pressed="true">ON</button>
+        </div>
+        <div class="option-row" role="group" aria-label="Danger zone">
+          <span class="option-label">DELETE ALL DATA</span>
+          <button class="btn btn-danger" id="opt-reset">RESET</button>
+        </div>
+        <button class="btn btn-back" id="btn-settings-back">BACK</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER SELECT ============ -->
+  <section class="screen" id="screen-chapters" hidden aria-label="Chapter select">
+    <div class="panel-wrap">
+      <div class="pixel-panel chapters-panel">
+        <h2 class="panel-title">CHAPTER SELECT</h2>
+        <p class="hall-sub">For veteran revisers and impatient developers.</p>
+        <div id="chapters-list"></div>
+        <button class="btn btn-back" id="btn-chapters-back">BACK</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HALL OF REJECTIONS ============ -->
+  <section class="screen" id="screen-hall" hidden aria-label="Hall of Rejections">
+    <div class="panel-wrap">
+      <div class="pixel-panel hall-panel">
+        <h2 class="panel-title">HALL OF REJECTIONS</h2>
+        <p class="hall-sub">A museum of editorial suffering. Your legacy, on permanent display.</p>
+        <div class="hall-stats">
+          <div class="hall-stat"><span class="hall-num" id="hall-runs">0</span><span class="hall-cap">SUBMISSIONS</span></div>
+          <div class="hall-stat"><span class="hall-num" id="hall-rejections">0</span><span class="hall-cap">REJECTIONS</span></div>
+          <div class="hall-stat"><span class="hall-num" id="hall-coffee">0</span><span class="hall-cap">COFFEES</span></div>
+          <div class="hall-stat"><span class="hall-num" id="hall-achv">0</span><span class="hall-cap">ACHIEVEMENTS</span></div>
+        </div>
+        <h3 class="hall-heading">DISCOVERED ENDINGS</h3>
+        <div class="hall-endings" id="hall-endings"></div>
+        <button class="btn btn-back" id="btn-hall-back">BACK</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STORY SCREEN ============ -->
+  <section class="screen" id="screen-story" hidden aria-label="Game">
+    <div class="bg" id="scene-bg" data-bg="office" aria-hidden="true">
+      <div class="bg-office">
+        <div class="rain-layer"></div>
+        <div class="lightning"></div>
+        <div class="desk-glow"></div>
+      </div>
+      <div class="bg-editorial"></div>
+      <div class="bg-mail"></div>
+      <div class="bg-dark"></div>
+    </div>
+
+    <header id="hud" aria-label="Resources">
+      <span id="chapter-label">CHAPTER I</span>
+      <div class="hud-stats">
+        <div class="stat" data-stat="rigor" title="Scientific Rigor">
+          <span class="stat-label">RIGOR</span>
+          <div class="stat-bar"><div class="stat-fill fill-rigor"></div></div>
+        </div>
+        <div class="stat" data-stat="patience" title="Patience">
+          <span class="stat-label">PATIENCE</span>
+          <div class="stat-bar"><div class="stat-fill fill-patience"></div></div>
+        </div>
+        <div class="stat" data-stat="time" title="Time">
+          <span class="stat-label">TIME</span>
+          <div class="stat-bar"><div class="stat-fill fill-time"></div></div>
+        </div>
+        <div class="stat" data-stat="credibility" title="Credibility">
+          <span class="stat-label">CRED</span>
+          <div class="stat-bar"><div class="stat-fill fill-cred"></div></div>
+        </div>
+        <div class="stat stat-coffee" title="Coffees consumed">
+          <svg viewBox="0 0 12 12" class="mug-icon" aria-hidden="true"><path d="M2 1h7v7h-7z M9 3h2v3a2 2 0 0 1-2 2z M1 9h9v2h-9z" fill="currentColor"/></svg>
+          <span id="coffee-count">0</span>
+        </div>
+      </div>
+    </header>
+
+    <div id="stage">
+      <div id="portrait-layer" aria-hidden="true"></div>
+
+      <div id="choices" role="menu" aria-label="Choices"></div>
+
+      <div id="dialogue-box" class="pixel-panel" role="dialog" aria-live="polite">
+        <div id="speaker-name" hidden></div>
+        <div id="dialogue-text"></div>
+        <div id="advance-hint" hidden></div>
+      </div>
+
+      <div id="email-view" class="pixel-panel" hidden>
+        <div class="email-head">
+          <div class="email-row"><span class="email-key">FROM:</span><span id="email-from"></span></div>
+          <div class="email-row"><span class="email-key">SUBJECT:</span><span id="email-subject"></span></div>
+        </div>
+        <div class="email-body" id="email-body"></div>
+        <div class="email-actions">
+          <button class="btn btn-primary" id="email-continue">CONTINUE</button>
+        </div>
+      </div>
+
+      <div id="upload-layer" class="pixel-panel" hidden>
+        <div class="upload-title" id="upload-title">UPLOADING MANUSCRIPT</div>
+        <div class="upload-bar"><div class="upload-fill" id="upload-fill"></div></div>
+        <div class="upload-status" id="upload-status">Connecting to editorial server...</div>
+      </div>
+
+      <div id="tracking-view" class="pixel-panel" hidden>
+        <div class="tk-title">MANUSCRIPT TRACKING &mdash; #SOCK-0042</div>
+        <div class="tk-rows" id="tk-rows"></div>
+        <div class="tk-hint">CLICK TO ADVANCE</div>
+      </div>
+
+      <div id="minigame-view" class="pixel-panel" hidden>
+        <div class="mg-head"><span class="mg-title" id="mg-title">REFRESH ADDICTION</span><span id="mg-days">DAY 0</span></div>
+        <div id="mg-status">STATUS: WITH EDITOR</div>
+        <div id="mg-message"></div>
+        <div id="mg-actions"></div>
+      </div>
+
+      <div id="battle-view" class="pixel-panel" hidden>
+        <div class="battle-head">
+          <span class="battle-name" id="bt-name"></span>
+          <span class="battle-destr" id="bt-destr"></span>
+        </div>
+        <div class="battle-round" id="bt-round"></div>
+        <div class="battle-comment" id="bt-comment"></div>
+        <div class="battle-reply" id="bt-reply" hidden></div>
+        <div class="battle-actions" id="bt-actions"></div>
+        <div class="tk-hint" id="bt-hint" hidden>CLICK TO CONTINUE</div>
+      </div>
+
+      <div id="results-view" class="pixel-panel" hidden>
+        <h2 class="panel-title">MANUSCRIPT FATE</h2>
+        <div class="rs-ending" id="rs-ending"></div>
+        <div class="rs-rows" id="rs-rows"></div>
+        <div class="rs-achv-label">ACHIEVEMENTS UNLOCKED THIS RUN</div>
+        <div class="rs-achv" id="rs-achv"></div>
+        <div class="email-actions">
+          <button class="btn btn-primary" id="rs-back">RETURN TO TITLE</button>
+        </div>
+      </div>
+
+      <div id="splash-layer" hidden>
+        <div id="splash-text"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="toast-container" aria-live="polite"></div>
+  <div id="fx-layer" aria-hidden="true"></div>
+</div>
+<script src="js/characters.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/gameState.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/story.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/battles.js"></script>
+<script src="js/events.js"></script>
+<script src="js/endings.js"></script>
+<script src="js/gameEngine.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
